@@ -14,6 +14,21 @@ Route::group(['namespace' => 'Front'], function () {
     Route::resource('contact', 'ContactController');
 });
 
+// Route::get('test/test/{id}', '...')->name('test.get');
+// Route::get('test/test', '...');
+// Route::post('test/test', '...');
+
+// Route::group([
+//     'prefix' => 'test',
+//     'middleware' => ['test.get'],
+//     'as' => 'test.',
+//     'namespace' => 'Front'
+// ], function () {
+//     Route::get('test/{id}', 'TestController')->name('get');
+//     Route::get('test', '...');
+//     Route::post('test', '...');
+// });
+
 
 
 
