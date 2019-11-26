@@ -13,10 +13,7 @@ class ContactTable extends Seeder
      */
     public function run()
     {
-        // Contact::createOrFirst([
-        //     'name' => 'name',
-        //     'phone' => 'email',
-        // ]);
+        // Contact::createOrFirst(['name' => 'name', 'phone' => 'email']);
         if (!DB::table('contacts')->where('name', 'Flexi')->exists()) {
             DB::table('contacts')->insert([
                 'name' => 'Flexi',
