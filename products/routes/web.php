@@ -11,11 +11,12 @@
 |
 */
 Route::group([
-    'middleware' => ['auth']
+    'middleware' => ['auth'],
+    'namespace' => 'Admin'
 ], function () {
-    Route::get('products', function () {});
-    Route::get('categories', function () {});
-    Route::get('loan-types', function () {});
+    Route::resource('products', 'ProductController');
+    Route::resource('categories', 'CategoryController');
+    Route::resource('loan-types', 'LoanTypeController');
 });
 
 Route::get('/', function () {

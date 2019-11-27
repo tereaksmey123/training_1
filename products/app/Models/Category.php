@@ -15,8 +15,4 @@ class Category extends Model
         return str_pad($this->id, '6', '0', STR_PAD_LEFT);
     }
     
-    public function getNameFormatAttribute()
-    {
-        return strtoupper($this->name);
-    }
 }
