@@ -16,6 +16,7 @@
     <div class="row">
         @include('admin.comp.alert')
         <div class="col-md-12">
+            Create By: {{ optional($entry->createdBy)->name }}
             {{-- @include('admin.comp.simple_form', ['url' => route('categories.store')]) --}}
             <form action="{{ route('products.update', $entry->id) }}" method="post">
                 @csrf
