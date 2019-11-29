@@ -19,6 +19,9 @@ Route::group([
     Route::resource('loan-types', 'LoanTypeController');
 });
 
+Route::get('send-mail-to', 'BasicController@sendMailTo')->name('basic.send-mail-to');
+Route::get('change-language', 'BasicController@changeLanguage')->name('basic.change-language');
+
 Route::get('/', function () {
     return view('welcome');
 });

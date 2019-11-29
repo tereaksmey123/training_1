@@ -38,4 +38,21 @@ class WebTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function testIsChangeLanguagePage()
+    {
+        $user = \Auth::loginUsingId(1);
+        $response = $this->actingAs($user)->get('/change-language');
+
+        $response->assertStatus(200);
+    }
+
+
+
+    public function testisSendMailToPage()
+    {
+        // $user = \Auth::loginUsingId(1);
+        $response = $this->get('/send-mail-to');
+        $response->assertStatus(200);
+    }
 }

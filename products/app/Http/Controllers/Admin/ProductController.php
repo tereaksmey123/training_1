@@ -24,6 +24,8 @@ class ProductController extends Controller
             view()->share($this->varShare);
             // return $next($request);
         // });
+
+        
     }
     /**
      * Display a listing of the resource.
@@ -32,7 +34,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.products.index');
     }
 
     /**

@@ -17,6 +17,9 @@ class Product extends Model
         // updated_by
 
         static::created(function($obj) {
+            // self::find($obj->id)->update([
+
+            // ]);
             $obj->code = str_pad($obj->id, '6', '0', STR_PAD_LEFT);
             $obj->save();
         });
