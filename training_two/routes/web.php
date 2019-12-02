@@ -11,8 +11,10 @@
 |
 */
 // GET POST PUT PATCH DELETE
+// category, products
 
-// Route::get('category', function () {});
+Route::get('categories', function () {});
+Route::get('products', function () {});
 
 Route::get('/', function () {
     return view('welcome');
