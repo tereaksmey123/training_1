@@ -13,8 +13,15 @@
 // GET POST PUT PATCH DELETE
 // category, products
 
-Route::get('categories', function () {});
-Route::get('products', function () {});
+Route::group([
+    // 'middle',
+    // 'as', 
+    // 'prefix',
+    'namespace' => 'Admin'
+], function () {
+    Route::resource('products', 'ProductController');
+    Route::resource('categories', 'CategoryController');
+});
 
 Route::get('/', function () {
     return view('welcome');

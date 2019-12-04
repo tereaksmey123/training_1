@@ -18,6 +18,8 @@ class ProductTest extends TestCase
      */
     public function testAccessorPriceFormat()
     {
+        // Accessor GET 
+        // Mutator SET 
         $product = new Product(['price' => 150]);
         // $product->save();
         $this->assertEquals('$ 150', $product->PriceFormat);
