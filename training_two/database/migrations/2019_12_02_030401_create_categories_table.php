@@ -18,7 +18,7 @@ class CreateCategoriesTable extends Migration
 
             $table->string('name')->nullable();
             $table->integer('created_by')->nullable();
-            $table->integer('updated_by')->nullable();
+            $table->integer('updated_by')->nullable(); // a
 
             $table->timestamps(); // created_at, updated_at
         });

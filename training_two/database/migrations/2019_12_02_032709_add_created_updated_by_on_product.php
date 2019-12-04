@@ -27,7 +27,7 @@ class AddCreatedUpdatedByOnProduct extends Migration
     public function down()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('created_by');
+            $table->dropColumn('created_by'); // aa
             $table->dropColumn('updated_by');
         });
     }

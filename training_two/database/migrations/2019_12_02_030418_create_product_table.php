@@ -20,7 +20,7 @@ class CreateProductTable extends Migration
             $table->string('code')->nullable();
             $table->double('price', 12, 2)->nullable();
             $table->integer('category_id')->nullable();
-            // $table->integer('created_by')->nullable();
+            // $table->integer('created_by')->nullable(); // a
             // $table->integer('updated_by')->nullable();
 
             $table->timestamps();
