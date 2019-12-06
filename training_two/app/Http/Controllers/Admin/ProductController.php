@@ -4,9 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        // parent::__constructor();
+        $this->data = [
+            'one' => 1111,
+            'two' => 2,
+            // 'user' => \Auth::guard('customer')->user(),
+        ];
+        view()->share($this->data);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +35,13 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        // \App::setLocale();
+        // app()->setLocale('km');
+        session(['set_lang' => 'km']);
+        seesion('set_lang');
+
+        $data = [];
+        return view('admins.products.create', $data);
     }
 
     /**
@@ -35,7 +52,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+
+        $create = Product::create($request->all());
+
+        \App\Libraries\ProductLib::createProductPriceHistories($create);
+        // $create->productPriceHistories()->create([
+        //     'new_price' => $request->price
+        // ]);
+        if ($create) return redirect()->back()->with('success', 'Add success');
+        return redirect()->back()->with('fail', 'Fail to add');
     }
 
     /**
@@ -57,7 +83,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = [];
+       
+        $data['category'] = Product::findOrFail($id);
+        return view('admins.products.edit', $data);
     }
 
     /**
@@ -67,9 +96,19 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $category = Product::findOrFail($product->id);
+        $product->update($request->all());
+
+        \App\Libraries\ProductLib::createProductPriceHistories($product, $category);
+        // $data = [];
+        // if ($category->price) $data['old_price'] = $category->price;
+        // $data['new_price'] = $product->price;
+        // if ($category->price != $product->price) $product->productPriceHistories()->create($data);
+
+        if ($product) return redirect()->back()->with('success', 'Update success');
+        return redirect()->back()->with('fail', 'Update to add');
     }
 
     /**

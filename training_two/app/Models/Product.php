@@ -17,4 +17,13 @@ class Product extends Model
     {
         $this->attributes['name'] = strtolower($value);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(\App\Models\Category::class, 'category_id');
+    }
+    public function productPriceHistories()
+    {
+        return $this->hasMany(\App\Models\ProductPriceHistory::class, 'product_id');
+    }
 }

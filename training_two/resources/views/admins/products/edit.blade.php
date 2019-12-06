@@ -10,29 +10,18 @@
    
 
     @include('admins.comp.alert')
-    <br /><br />
-    Created By: {{ optional($category->createdBy)->name}} <br>
-    @ ??
-    Updated By: {{ optional($category->updatedBy)->name }}
-    
-    <br />
-    <br />
-    <form action="{{ route('categories.update', $category->id) }}" method="post">
+    <form action="{{ route('products.update', $category->id) }}" method="post">
         @csrf 
         @method('PUT')
         <label for="">Name</label>
         <input type="text" name="name" value="{{ old('name') ?? $category->name }}">
 
-        {{ $errors->first('name') }}
+        <label for="">Price</label>
+        <input type="text" name="price" value="{{ old('name') ?? $category->price }}">
+
 
         <button type="submit">Submit</button>
     </form>
-    Product <br>
-    @forelse($category->products as $row)
-        {{ $row->id }} {{ $row->name }}
-    @empty
-    empty
-    @endforelse
 
 </body>
 </html>

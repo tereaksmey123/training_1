@@ -14,15 +14,15 @@
 // category, products
 
 Route::group([
-    // 'middle',
+    // 'middleware' => ['check.language'],
     // 'as', 
     // 'prefix',
     'namespace' => 'Admin'
 ], function () {
-    Route::resource('products', 'ProductController');
+    Route::resource('products', 'ProductController')->middleware('check.language');
     Route::resource('categories', 'CategoryController');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });

@@ -37,6 +37,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        $data = [];
         return view('admins.categories.create', $data);
     }
 
@@ -77,6 +78,7 @@ class CategoryController extends Controller
        $data = [];
        
        $data['category'] = Category::findOrFail($id);
+    //    return response()->json($data['category']);
         return view('admins.categories.edit', $data);
     }
 
