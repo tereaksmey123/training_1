@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::group([
+    'namespace' => 'WebApi',
+    'as' => 'web.'
+], function () {
+    Route::apiResource('products', 'ProductController');
+});
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

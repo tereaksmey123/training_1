@@ -15,9 +15,9 @@ class WebTest extends TestCase
      * 
      * vendor/bin/phpunit --filter 'Tests\\Feature\\Routes\\WebTest'
      */
-    public function testIsContactPageExists()
-    {
-        $response = $this->get('/contact');
-        $response->assertSuccessful();
-    }
+    // public function testIsContactPageExists()
+    // {
+    //     $response = $this->get('/contact');
+    //     $response->assertSuccessful();
+    // }
 }
