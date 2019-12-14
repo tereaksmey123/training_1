@@ -4,6 +4,7 @@ namespace App\Http\Controllers\WebApi;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Http\Resources\WebApi\ProductResource;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -15,17 +16,9 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        // $request['status'] = 1;
+        $products = Product::paginate(25);
+        return ProductResource::collection($products);
     }
 
     /**
@@ -36,7 +29,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|min:3|max:255',
+            'category_id' => 'required|integer|exists:categories,id'
+        ]);
+
+        $product = Product::create($request->only([
+            'name', 'price', 'category_id', 'profile'
+        ]));
+        return new ProductResource($product);
     }
 
     /**
@@ -50,27 +51,15 @@ class ProductController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ModelsProduct  $modelsProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $modelsProduct)
+    // public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
-    }
+        $product = Product::findOrFail($id);
+        $product->update($request->only([
+            'name', 'price', 'category_id', 'profile'
+        ]));
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ModelsProduct  $modelsProduct
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Product $modelsProduct)
-    {
-        //
+        return new ProductResource($product);
     }
 
     /**
@@ -81,6 +70,6 @@ class ProductController extends Controller
      */
     public function destroy(Product $modelsProduct)
     {
-        //
+        
     }
 }

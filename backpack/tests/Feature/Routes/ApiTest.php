@@ -17,7 +17,20 @@ class ApiTest extends TestCase
      */
     public function testProductRoute()
     {
-        $response = $this->get('/api/products');
-        $response->assertSuccessful();
+        // $response = $this->get('/api/products');
+        // $response->assertSuccessful();
+        $response = $this->json('GET', route('web.products.index'), [
+            'headers' => [
+                'Accept' => 'application/json',
+                'Content-Type' => 'application/json',
+            ]
+        ]);
+        // dd($response->getContent());
+        $response
+            ->assertStatus(200)
+            // ->assertJson([
+            //     'created' => true,
+            // ])
+            ;
     }
 }
