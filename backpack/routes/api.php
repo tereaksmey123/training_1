@@ -32,6 +32,8 @@ Route::middleware(['auth:api'])->group(function(){
     Route::get('user', 'PassportController@show')->name('user.show');
     Route::post('user', 'PassportController@update')->name('user.update');
     Route::post('user/change-password', 'PassportController@changePassword')->name('user.change-password');
+
+    // 
 });
 
 
